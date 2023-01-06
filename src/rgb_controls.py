@@ -12,7 +12,7 @@ SHIFT_TIME_DELAY = 5
 MIN_DEVICES = 4
 DEVICE_NAME = "Corsair Vengeance Pro RGB"
 MODE = "Direct"
-
+MAX_LEDS = 10
 
 # colours:
 BLACK = (0, 0, 0)
@@ -44,7 +44,9 @@ class RAMWords:
         """
         for device in self.devices:
             # write BLACK (0,0,0) to the stick
-            pass
+            for led in range(0, MAX_LEDS):
+                # set colour BLACK
+                pass
         
     def fill_buffer(self, message):
         pass
