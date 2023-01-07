@@ -33,6 +33,7 @@ class RAMWords:
         except Exception as e:
             logging.info(f'Connection problem: {e}')
             sys.exit(1)
+        self.font = font.Font()
 
     def _check_devices(self):
         self.devices = self.cli.get_devices_by_type(DeviceType.DEVICE_NAME)[0]
@@ -49,7 +50,9 @@ class RAMWords:
                 pass
         
     def fill_buffer(self, message):
-        pass
+         for character in message:
+             # process the character using the font
+             pass
 
     def push_buffer(self):
         pass  
