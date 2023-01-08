@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """
+rgb_controls.py
 """
-import logging
+# import logging
 import sys
 from openrgb import OpenRGBClient
-from openrgb.utils import DeviceType
+from openrgb.utils import RGBColor
 import font
 
 
@@ -15,11 +16,11 @@ MODE = "Direct"
 MAX_LEDS = 10
 
 # colours:
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+BLACK = RGBColor(0, 0, 0)
+WHITE = RGBColor(255, 255, 255)
+RED = RGBColor(255, 0, 0)
+GREEN = RGBColor(0, 255, 0)
+BLUE = RGBColor(0, 0, 255)
 
 
 class RAMWords:
@@ -30,35 +31,47 @@ class RAMWords:
         """
         try:
             self.cli = OpenRGBClient()
+            self._check_devices()
         except Exception as e:
-            logging.info(f'Connection problem: {e}')
+            print(f'Connection problem: {e}')
             sys.exit(1)
         self.font = font.Font()
 
     def _check_devices(self):
         """
         """
-        self.devices = self.cli.get_devices_by_type(DeviceType.DEVICE_NAME)[0]
+        self.devices = self.cli.get_devices_by_name(DEVICE_NAME)
         if len(self.devices) < MIN_DEVICES:
             raise ValueError
+        else:
+            for device in self.devices:
+                device.set_mode('direct')
+
+    def __str__(self):
+        return f"RAMWords {DEVICE_NAME=}"
 
     def clear(self):
         """
         """
         for device in self.devices:
-            # write BLACK (0,0,0) to the stick
-            for led in range(0, MAX_LEDS):
-                # set colour BLACK
-                pass
-        
+            for i, led in enumerate(range(0, MAX_LEDS)):
+                if i % 2:
+                    device.zones[0].set_color(RED)
+                elif i % 3:
+                    device.zones[0].set_color(BLUE)
+                else:
+                    device.zones[0].set_color(GREEN)
+        self.buffer = []
+
     def fill_buffer(self, message):
-         for character in message:
-             # process the character using the font
-             self.buffer += self.font[character]
+        for character in message:
+            # process the character using the font
+            self.buffer += self.font[character]
 
     def push_buffer(self):
-        pass  
+        pass
 
 
 if __name__ == "__main__":
-    pass
+    x = RAMWords()
+    x.clear()
