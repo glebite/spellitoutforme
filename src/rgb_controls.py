@@ -55,14 +55,6 @@ class RAMWords:
         """
         for device in self.devices:
             device.zones[0].set_color(BLACK)
-            # for i, led in enumerate(range(0, MAX_LEDS)):
-                # if i % 2:
-                #     device.zones[0].set_color(RED)
-                # elif i % 3:
-                #     device.zones[0].set_color(BLUE)
-                # else:
-                #     device.zones[0].set_color(GREEN)
-
         self.buffer = []
 
     def fill_buffer(self, message):
