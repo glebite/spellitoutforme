@@ -23,7 +23,7 @@ BLUE = (0, 0, 255)
 
 
 class RAMWords:
-    """
+    """RAMWords - class for displaying text on RAM
     """
     def __init__(self):
         """
@@ -36,6 +36,8 @@ class RAMWords:
         self.font = font.Font()
 
     def _check_devices(self):
+        """
+        """
         self.devices = self.cli.get_devices_by_type(DeviceType.DEVICE_NAME)[0]
         if len(self.devices) < MIN_DEVICES:
             raise ValueError
@@ -52,7 +54,7 @@ class RAMWords:
     def fill_buffer(self, message):
          for character in message:
              # process the character using the font
-             pass
+             self.buffer += self.font[character]
 
     def push_buffer(self):
         pass  
