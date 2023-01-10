@@ -69,3 +69,5 @@ class RAMWords:
 if __name__ == "__main__":
     x = RAMWords()
     x.clear()
+    x.fill_buffer("stuff")
+    print(x.buffer)

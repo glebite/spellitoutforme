@@ -134,6 +134,15 @@ font8x8_basic = [
 ]
 
 
+def flipping_bits(n):
+    """ said in Moss' voice
+    """
+    binary = bin(n)
+    binary = binary[2:].zfill(8)
+    rev = binary[::-1]
+    return int(rev, 2)
+
+
 class Font:
     """
     """
@@ -157,6 +166,13 @@ class Font:
         shifted = [x << 1 for x in self[index]]
         return shifted
 
+    def rotate(self, index):
+        """
+        """
+        for slice in self.font[index]:
+            print(f'{slice:>08b} => {flipping_bits(slice):>08b}')
+
 
 if __name__ == "__main__":
     x = Font()
+    x.rotate('C')
