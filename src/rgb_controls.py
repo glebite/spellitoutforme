@@ -70,14 +70,14 @@ class RAMWords:
         """
         """
         self.buffer = self.font.rotate(65)
-        for i in range(8, 0, -1):
+        for i in range(7, 6, -1):
             bit = pow(2, i)
-            for byte_set in self.buffer:
+            for counter, byte_set in enumerate(self.buffer):
                 if bit & byte_set:
-                    self.devices[0].leds[i].set_color(GREEN)
+                    self.devices[0].leds[counter].set_color(GREEN)
                 else:
-                    self.devices[0].leds[i].set_color(BLACK)
-
+                    self.devices[0].leds[counter].set_color(BLACK)
+                print(i, bit, byte_set, bit & byte_set)
 
 if __name__ == "__main__":
     x = RAMWords()

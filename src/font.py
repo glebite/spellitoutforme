@@ -169,8 +169,11 @@ class Font:
     def rotate(self, index):
         """
         """
+        rotate_char = []
         for slice in self.font[index]:
-            print(f'{slice:>08b} => {flipping_bits(slice):>08b}')
+            # print(f'{slice:>08b} => {flipping_bits(slice):>08b}')
+            rotate_char.append(flipping_bits(slice))
+        return rotate_char
 
 
 if __name__ == "__main__":
