@@ -15,6 +15,7 @@ DEVICE_NAME = "Corsair Vengeance Pro RGB"
 MODE = "Direct"
 MAX_LEDS = 10
 
+
 # colours:
 BLACK = RGBColor(0, 0, 0)
 WHITE = RGBColor(255, 255, 255)
@@ -65,9 +66,20 @@ class RAMWords:
     def push_buffer(self):
         pass
 
+    def output_buffer(self):
+        """
+        """
+        self.buffer = self.font.rotate(65)
+        for i in range(8, 0, -1):
+            bit = pow(2, i)
+            for byte_set in self.buffer:
+                if bit & byte_set:
+                    self.devices[0].leds[i].set_color(GREEN)
+                else:
+                    self.devices[0].leds[i].set_color(BLACK)
+
 
 if __name__ == "__main__":
     x = RAMWords()
     x.clear()
-    x.fill_buffer("stuff")
-    print(x.buffer)
+    x.output_buffer()
