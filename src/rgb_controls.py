@@ -59,17 +59,21 @@ class RAMWords:
         self.buffer = []
 
     def fill_buffer(self, message):
+        """
+        """
         for character in message:
             # process the character using the font
             self.buffer += self.font[character]
 
     def push_buffer(self):
+        """
+        """
         pass
 
     def output_buffer(self):
         """
         """
-        self.buffer = self.font.rotate(65)
+        self.buffer = self.font.rotate(124)
         for shift, i in enumerate(range(7, 3, -1)):
             bit = pow(2, i)
             for counter, byte_set in enumerate(self.buffer):
