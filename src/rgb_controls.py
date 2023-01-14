@@ -71,7 +71,7 @@ class RAMWords:
         pass
 
     def output_buffer(self):
-        """
+        """Need to incorporate recent whiteboard stuff.
         """
         self.buffer = self.font.rotate(124)
         for shift, i in enumerate(range(7, 3, -1)):
