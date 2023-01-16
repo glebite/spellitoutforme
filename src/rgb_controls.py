@@ -73,15 +73,15 @@ class RAMWords:
     def output_buffer(self):
         """Need to incorporate recent whiteboard stuff.
         """
-        self.buffer = self.font.rotate(66)
-        for shift, i in enumerate(range(7, 3, -1)):
-            bit = pow(2, i)
-            for counter, byte_set in enumerate(self.buffer):
-                if bit & byte_set:
-                    self.devices[shift].leds[counter+1].set_color(BLACK)
+        self.buffer = self.font[65]
+        slices = self.font.slices(65)
+        for shift, settings in enumerate(slices[2:6]):
+            for i, bit in enumerate(settings[::-1]):
+                print(shift, i, bit)
+                if bit:
+                    self.devices[shift].leds[i+1].set_color(GREEN)
                 else:
-                    self.devices[shift].leds[counter+1].set_color(GREEN)
-                print(i, bit, byte_set, bit & byte_set)
+                    self.devices[shift].leds[i+1].set_color(BLACK)
 
 
 if __name__ == "__main__":

@@ -175,6 +175,19 @@ class Font:
             rotate_char.append(flipping_bits(slice))
         return rotate_char
 
+    def slices(self, index):
+        """ Transform a byte array in to a rotated
+            set of slices
+        """
+        normal = self.font[index]
+        out = []
+        
+        for i in range(7, -1, -1):
+            bit = pow(2, i)
+            temp = list(map(lambda n: bool(n & bit), normal))
+            out.append(temp)
+        return out
+
 
 if __name__ == "__main__":
     x = Font()
