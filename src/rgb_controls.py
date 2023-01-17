@@ -70,21 +70,23 @@ class RAMWords:
         """
         pass
 
-    def output_buffer(self):
+    def output_buffer(self, message):
         """Need to incorporate recent whiteboard stuff.
         """
-        self.buffer = self.font[65]
-        slices = self.font.slices(65)
-        for shift, settings in enumerate(slices[2:6]):
-            for i, bit in enumerate(settings[::-1]):
-                print(shift, i, bit)
-                if bit:
-                    self.devices[shift].leds[i+1].set_color(GREEN)
-                else:
-                    self.devices[shift].leds[i+1].set_color(BLACK)
+        self.buffer = self.font.sliced_buffer(message)
+        print(len(self.buffer))
+        for i in range(0, len(self.buffer)-4):
+            shift = i % 4
+            print(i, shift)
+            for slice in self.buffer[i:i+4]:
+                for pos, bit in enumerate(slice):
+                    if bit:
+                        self.devices[shift].leds[pos+1].set_color(GREEN)
+                    else:
+                        self.devices[shift].leds[pos+1].set_color(BLACK)
 
 
 if __name__ == "__main__":
     x = RAMWords()
     x.clear()
-    x.output_buffer()
+    x.output_buffer("Hello")

@@ -188,7 +188,14 @@ class Font:
             out.append(temp)
         return out
 
+    def sliced_buffer(self, message):
+        sliced = []
+        for char in message:
+            for slice in self.slices(ord(char)):
+                sliced.append(list(slice[::-1]))
+        return sliced
 
 if __name__ == "__main__":
     x = Font()
-    x.rotate('C')
+    print(len(x.sliced_buffer('01234')))
+    print(x.sliced_buffer('01234'))
