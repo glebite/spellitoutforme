@@ -77,13 +77,15 @@ class RAMWords:
         print(len(self.buffer))
         for i in range(0, len(self.buffer)-4):
             shift = i % 4
-            print(i, shift)
             for slice in self.buffer[i:i+4]:
                 for pos, bit in enumerate(slice):
                     if bit:
+                        print('*', end=" ")
                         self.devices[shift].leds[pos+1].set_color(GREEN)
                     else:
+                        print('.', end=" ")
                         self.devices[shift].leds[pos+1].set_color(BLACK)
+                print()
 
 
 if __name__ == "__main__":
