@@ -12,3 +12,6 @@ What if...
 I can write things out with them?  
 
 
+So the idea is to take a font, slice it up and shove it at the LEDs.
+
+It works but is super slow.
