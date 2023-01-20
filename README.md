@@ -12,6 +12,8 @@ What if...
 I can write things out with them?  
 
 
-So the idea is to take a font, slice it up and shove it at the LEDs.
+## Reality  
 
-It works but is super slow.
+It's slow.  Too slow for words.  So for the time being, this 
+project is going to be boxed.
+
